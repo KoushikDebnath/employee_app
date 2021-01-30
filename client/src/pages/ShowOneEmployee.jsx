@@ -1,7 +1,8 @@
 import React from 'react';
 // import styled from 'styled-components';
 
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 export default class ShowOneEmployee extends React.Component{
@@ -15,49 +16,49 @@ render(){
     // `;
     return(
 
-    <div className = "row">
-    <div className="row">
-        <h2>{this.props.fname +" "+this.props.lname}</h2>
-    </div>
-    <div className= "row">
-        <div className="col-sm-4">
-            <div className="key">Age: </div>
-            <div className="value">{this.props.age}</div>
-        </div>
-        <div className="col-sm-4">
-            <div className="key">Grade: </div>
-            <div className="value">{this.props.grade}</div>
-        </div>
-        <div className="col-sm-4">
-            <div className="key">Sex: </div>
-            <div className="value">{this.props.sex}</div>
-        </div>
+    <Row>
+        <Row>
+            <h2>{this.props.fname +" "+this.props.lname}</h2>
+        </Row>
+        <Row>
+            <Col>
+                <div className="key">Age: </div>
+                <div className="value">{this.props.age}</div>
+            </Col>
+            <Col>
+                <div className="key">Grade: </div>
+                <div className="value">{this.props.grade}</div>
+            </Col>
+            <Col>
+                <div className="key">Sex: </div>
+                <div className="value">{this.props.sex}</div>
+            </Col>
 
 
-        <div className= "row">
-        <div className="col-sm-6">
-            <div className="key">Salary: </div>
-            <div className="value">{this.props.salary}</div>
-        </div>
-        <div className="col-sm-6">
-            <div className="key">Joining Date: </div>
-            <div className="value">{this.props.joinning_date}</div>
-        </div>
-        </div>
+            <Row>
+                <Col>
+                    <div className="key">Salary: </div>
+                    <div className="value">{this.props.salary}</div>
+                </Col>
+                <Col>
+                    <div className="key">Joining Date: </div>
+                    <div className="value">{this.props.joinning_date}</div>
+                </Col>
+            </Row>
 
 
-        <div className= "row">
-        <div className="col-sm-6">
-            <div className="key">Email: </div>
-            <div className="value">{this.props.email}</div>
-        </div>
-        <div className="col-sm-6">
-            <div className="key">Mobile: </div>
-            <div className="value">{this.props.mobile}</div>
-        </div>
-        </div>
-    </div>
-    </div>
+            <Row>
+                <Col>
+                    <div className="key">Email: </div>
+                    <div className="value">{this.props.email}</div>
+                </Col>
+                <Col>
+                    <div className="key">Mobile: </div>
+                    <div className="value">{this.props.mobile}</div>
+                </Col>
+            </Row>
+        </Row>
+    </Row>
 
 
 

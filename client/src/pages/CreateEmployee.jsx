@@ -1,6 +1,7 @@
 import React from 'react';
 import {updateEmployee, getEmployee, createEmployee} from '../api';
-
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
 export default class CreateEmployee extends React.Component {
 
 constructor(props){
@@ -25,9 +26,10 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
 
 handleChange(event) {
-
+    const name = event.target.name;
+    const val = event.target.value;
  this.setState((prevState) => {
-    prevState[event.target.name] = event.target.value;
+    prevState[name] = val;
     return prevState;
  });
 
@@ -78,58 +80,59 @@ conponentDidMount() {
 
         return(
             <React.Fragment>
+            <Container>
              <h1>{title}</h1> 
-            <form  class= "container">
-                    <div class="form-group">
-                        <label for="fname">First Name</label>
-                        <input type="text" class="form-control" name="fname" id="fname" value={this.state.fname} onChange= {this.handleChange}/>
-                    </div>
-                    <div class="form-group">
-                        <label for="lname">last Name</label>
-                        <input type="text" class="form-control" name="lname" id="lname" value={this.state.lname} onChange= {this.handleChange}/>
-                    </div>
+            <Form>
+                <Form.Group controlId = "fname" >
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control type="text"  name="fname"  value={this.state.fname} onChange= {this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "lname">
+                    <Form.Label>last Name</Form.Label>
+                    <Form.Control type="text" className="form-control" name="lname" value={this.state.lname} onChange= {this.handleChange}/>
+                </Form.Group>
 
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" min= "20" max= "60" class="form-control" name="age" id="fname" value={this.state.age} onChange= {this.handleChange}/>
-                    </div>
+                <Form.Group controlId = "age">
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control type="number" min= "20" max= "60" className="form-control" name="age" value={this.state.age} onChange= {this.handleChange}/>
+                </Form.Group>
 
-                    <div class="form-group">
-                        <label for="grade">Grade</label>
-                        <select  class="form-control" id="grade" value = {this.state.grade}  onChange={this.handleChange}>
-                        <option value= "A">A</option>
-                        <option value= "B">B</option>
-                        <option value= "C">C</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="sex">Sex</label>
-                       <select class="form-control" id="sex" value = {this.state.sex} onChange={this.handleChange}>
-                        <option value="M">M</option>
-                        <option value= "F">F</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="salary">Salary</label>
-                        <input type="number" class="form-control" name="salary" id="salary" value={this.state.salary} onChange= {this.handleChange}/>
-                    </div>
-                    <div class="form-group">
-                        <label for="joining_date">Joining Date</label>
-                        <input type="date" class="form-control" name="joining_date" id="joining_date" value={this.state.joining_date} onChange= {this.handleChange}/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" value={this.state.email} onChange= {this.handleChange}/>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile</label>
-                        <input type="number" min= "7000000000" max ="9000000000" class="form-control" name="mobile" id="mobile" value={this.state.mobile} onChange= {this.handleChange}/>
-                    </div>
+                <Form.Group controlId = "grade">
+                    <Form.Label>Grade</Form.Label>
+                    <Form.Control as="select" name = "grade" defaultValue = {this.state.grade}  onChange={this.handleChange}>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group controlId = "sex">
+                    <Form.Label>Sex</Form.Label>
+                    <Form.Control as="select" name = "sex" defaultValue = {this.state.sex} onChange={this.handleChange}>
+                    <option>M</option>
+                    <option>F</option>
+                    </Form.Control>
+                </Form.Group>
+                
+                <Form.Group controlId = "salary">
+                    <Form.Label>Salary</Form.Label>
+                    <Form.Control type="number" className="form-control" name="salary" value={this.state.salary} onChange= {this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "joining_date">
+                    <Form.Label>Joining Date</Form.Label>
+                    <Form.Control type="date" className="form-control" name="joining_date" value={this.state.joining_date} onChange= {this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" className="form-control" name="email" value={this.state.email} onChange= {this.handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "mobile">
+                    <Form.Label>Mobile</Form.Label>
+                    <Form.Control type="number" min= "7000000000" max ="9000000000" className="form-control" name="mobile" value={this.state.mobile} onChange= {this.handleChange}/>
+                </Form.Group>
 
-                    <button type="submit" class="btn btn-primary" onClick = {this.handleSubmit}>Submit</button>
-            </form>
-
+                <button type="submit" className="btn btn-primary" onClick = {this.handleSubmit}>Submit</button>
+            </Form>
+            </Container>
           
             </React.Fragment>
         );
