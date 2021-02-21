@@ -1,93 +1,112 @@
 import React from 'react';
-// import styled from 'styled-components';
+//styled-components
+import styled from 'styled-components';
+//Bootstrap
+import Button from 'react-bootstrap/Button';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+export default class ShowOneEmployee extends React.Component {
+
+    render() {
+
+        const ECard = styled.div`
+        min-width: 30rem;
+        display: grid;
+        grid-template-column:auto auto;
+        grid-template-row: auto auto auto auto auto auto;
+        grid-gap: 1rem;
+        margin: 1rem;
+        padding: 1rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    `;
+        const Name = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: auto;
+    `;
+        const Email = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: auto;
+    `;
+        const Mobile = styled.div`
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: auto;
+    `;
+        const Grade = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: auto;
+    `;
+        const Gender = styled.div`
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: auto;
+    `;
+        const Age = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: auto;
+    `;
+        const Salary = styled.div`
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: auto;
+    `;
+        const JDate = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: auto;
+    `;
+
+        const UpdateBtn = styled.div`
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: auto;
+    `;
+        const DeleteBtn = styled.div`
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: auto;
+    `;
 
 
-export default class ShowOneEmployee extends React.Component{
 
-render(){
-    // const span = styled.span`
-    //     font-size: 1.5em;
-    //     font-weight: bold;
-    //     padding: 0 5px;
-    
-    // `;
-    return(
+        return (
+            <ECard>
+                <Name>{this.props.fname + " " + this.props.lname}</Name>
+                <Email>Email: {this.props.email}</Email>
+                <Mobile>Mobile: {this.props.mobile}</Mobile>
+                <Grade><span>Grade:</span> {this.props.grade}</Grade>
+                <Gender><span>Gender:</span> {this.props.sex}</Gender>
+                <Age><span>Age:</span> {this.props.age}</Age>
+                <Salary> <span>Salary:</span> {this.props.salary}</Salary>
+                <JDate> <span>Joining Date:</span> {this.props.joinning_date} </JDate>
+                <UpdateBtn><Button variant="info" href="#">Update</Button></UpdateBtn>
+                <DeleteBtn><Button variant="danger" href="#">Delete</Button></DeleteBtn>
+            </ECard>
+        );
 
-    <Row>
-        <Row>
-            <h2>{this.props.fname +" "+this.props.lname}</h2>
-        </Row>
-        <Row>
-            <Col>
-                <div className="key">Age: </div>
-                <div className="value">{this.props.age}</div>
-            </Col>
-            <Col>
-                <div className="key">Grade: </div>
-                <div className="value">{this.props.grade}</div>
-            </Col>
-            <Col>
-                <div className="key">Sex: </div>
-                <div className="value">{this.props.sex}</div>
-            </Col>
-
-
-            <Row>
-                <Col>
-                    <div className="key">Salary: </div>
-                    <div className="value">{this.props.salary}</div>
-                </Col>
-                <Col>
-                    <div className="key">Joining Date: </div>
-                    <div className="value">{this.props.joinning_date}</div>
-                </Col>
-            </Row>
-
-
-            <Row>
-                <Col>
-                    <div className="key">Email: </div>
-                    <div className="value">{this.props.email}</div>
-                </Col>
-                <Col>
-                    <div className="key">Mobile: </div>
-                    <div className="value">{this.props.mobile}</div>
-                </Col>
-            </Row>
-        </Row>
-    </Row>
-
-
-
-   /* <div className = "card" style = {{width : '18 rem'}}>
-        <div className="card-body">
-             <h5 className="cart-span">{this.props.fname +" "+this.props.lname}</h5>
-             <pre className="card-text">
-                {this.props.email}
-                {this.props.mobile}
-            </pre>
-        </div>
-        <ul className="list-group list-group-flush">
-        <li className="list-group-item"><span>Age:</span> {this.props.age}</li>
-        <li className="list-group-item"><span>Grade:</span> {this.props.grade}</li>
-        <li className="list-group-item"><span>Sex:</span> {this.props.sex}</li>     
-        <li className="list-group-item"><span>Salary:</span> {this.props.salary}</li>     
-        <li className="list-group-item"><span>Joining Date:</span> {this.props.joinning_date}</li>   
-        </ul>
-        <div className="card-body">
-          <a href="#" className="card-link">Update</a>
-          <a href="#" className="card-link">Delete</a>
-        </div>
-   
-    </div>*/
-
-    
-
-    );
-
-}
+    }
 
 }
