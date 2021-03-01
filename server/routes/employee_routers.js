@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const employeeControllers = require('../controllers/employee_controllers');
-const auth = require('../Auth');
 
 
-router.get('/all', auth, employeeControllers.getaAllEmployees);
-router.get('/:empId', auth, employeeControllers.getEmployee);
-router.post('/create', auth, employeeControllers.createEmployee);
-router.put('/:empId', auth, employeeControllers.updateteEmployee);
-router.delete('/:empId', auth, employeeControllers.deleteEmployee);
+router.get('/all',  employeeControllers.getaAllEmployees);
+router.get('/get/:empId',  employeeControllers.getEmployee);
+router.post('/create',  employeeControllers.createEmployee);
+router.put('/update/:empId',  employeeControllers.updateteEmployee);
+router.delete('/delete/:empId',  employeeControllers.deleteEmployee);
 
 
 

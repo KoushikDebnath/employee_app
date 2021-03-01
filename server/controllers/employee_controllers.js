@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Employee = require('../models/employee_models');
 
 
@@ -8,10 +7,12 @@ const getaAllEmployees = (req, res) => {
     Employee
         .find()
         .then(employees => {
-            return res.status(200).json(
-                {
-                    data: employees
-                });
+            
+                return res.status(200).json(
+                    {
+                        data: employees
+                    });
+                  
         })
         .catch(err => {
             console.error(err);
@@ -61,50 +62,26 @@ const createEmployee = (req, res) => {
             error: "You must provide employee details"
         });
     }
-    let newEmpId;
+    
     let newEmployee = {};
 
-    Employee.find()
-        .then(employee => {
-
-            if (employee.length === 0) {
-                console.log(employee)
-                newEmployee = {
-                    empid: 1000001,
-                    fname: body.fname,
-                    lname: body.lname,
-                    DOB: body.DOB,
-                    grade: body.grade,
-                    sex: body.sex,
-                    salary: body.salary,
-                    joining_date: body.joining_date,
-                    email: body.email,
-                    mobile: body.mobile
-                }
-                const empObj = new Employee(newEmployee);
-                return empObj.save();
-            }
-            else {
-                newEmpId = employee[employee.length - 1].empid + 1;
-                newEmployee = {
-                    empid: newEmpId,
-                    fname: body.fname,
-                    lname: body.lname,
-                    DOB: body.DOB,
-                    grade: body.grade,
-                    sex: body.sex,
-                    salary: body.salary,
-                    joining_date: body.joining_date,
-                    email: body.email,
-                    mobile: body.mobile
-                }
-                const empObj = new Employee(newEmployee);
-                return empObj.save();
-            }
-        })
-        .then(() => {
+    
+    newEmployee = {
+        fname: body.fname,
+        lname: body.lname,
+        DOB: body.DOB,
+        grade: body.grade,
+        gender: body.gender,
+        salary: body.salary,
+        joining_date: body.joining_date,
+        email: body.email,
+        mobile: body.mobile
+    }
+    const empObj = new Employee(newEmployee);
+    empObj.save()    
+        .then((employee) => {
             return res.status(201).json({
-                id: newEmpId,
+                id: employee._id,
                 messege: 'Empolyee created'
             });
         })
@@ -132,35 +109,34 @@ const updateteEmployee = (req, res) => {
 
 
     Employee
-        .findOne({ empid: empId })
+        .findOne({ _id: empId })
         .then(employee => {
+            if(employee!=null){
             employee.fname = body.fname;
             employee.lname = body.lname;
             employee.DOB = body.DOB;
             employee.grade = body.grade;
-            employee.sex = body.sex;
+            employee.gender = body.gender;
             employee.salary = body.salary;
             employee.joinning_date = body.joinning_date;
             employee.email = body.email;
             employee.mobile = body.mobile;
 
-            employee.save()
-                .then(() => {
-                    return res.status(200).json({
-                        messege: "Employee updated successfully"
-                    });
-                })
-                .catch(err => {
-                    console.error(err);
-                    return res.status(500).json({
-                        error: 'Something went wrong'
-                    });
-                })
+            return employee.save()
+            }
+            else{
+                return Promise.reject('NoEmployee');
+            }   
+        })
+        .then(() => {
+            return res.status(200).json({
+                messege: "Employee updated successfully"
+            });
         })
         .catch(err => {
             console.error(err);
             return res.status(500).json({
-                error: 'Something went wrong'
+                error: err === 'NoEmployee'?'No employee found':'Something went wrong'
             });
         })
 }
@@ -173,16 +149,18 @@ const updateteEmployee = (req, res) => {
 const deleteEmployee = (req, res) => {
     const empId = req.params.empId;
 
-    Employee.deleteOne({ empid: empId })
-        .then(() => {
+    Employee.deleteOne({ _id: empId })
+        .then(({deletedCount}) => {
+            if(deletedCount!==0){
             return res.status(200).json({
                 messege: 'Employee deleted successfully'
-            });
+            });}
+            else return Promise.reject('noneDeleted');
         })
         .catch(err => {
             console.error(err);
             return res.status(500).json({
-                error: 'Something went wrong'
+                error: err ==='noneDeleted'?'No employee found':'Something went wrong'
             });
         })
 

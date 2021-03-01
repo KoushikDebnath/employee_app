@@ -5,9 +5,9 @@ export default class Footer extends React.Component {
 render(){
 
 return(
-    <footer className="page-footer">
-      <div className="footer-copyright">© 2020 Copyright:
-        <p> Koushik Debnath</p>
+    <footer className="page-footer" style={{textAlign:'center', paddingBottom:'1rem'}}> 
+      <div className="footer-copyright">© 2021 Copyright:
+        <span> Koushik Debnath</span>
       </div>
      
     

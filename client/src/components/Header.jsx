@@ -21,11 +21,7 @@ return (
       </li>
       <li className="nav-item">
         <Link to = '/createemployee' className="nav-link" >Create Employee</Link>
-      </li>
-      <li className="nav-item">
-        <Link to = '/listemployee' className="nav-link">List Employee</Link>
-      </li>
-      
+      </li>      
     </ul>
   </div>
 </nav>

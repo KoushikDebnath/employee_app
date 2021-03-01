@@ -3,7 +3,6 @@ const db = require('./db')
 const bodyparser = require('body-parser');
 const employeeRoutes = require('./routes/employee_routers');
 const cors = require('cors');
-const adminRoutes = require('./routes/admin_routes');
 
 
 const app = express();
@@ -19,5 +18,4 @@ app.get('/', function (req, res) {
 });
 
 app.use('/employee', employeeRoutes);
-app.use('/admin', adminRoutes)
 app.listen(port, () => console.log(`Listining at port ${port}`));

@@ -9,10 +9,10 @@ const api = axios.create({
 
 
 export const getAllEmployee = () => api.get('/all');
-export const getEmployee = (empId) => api.get(`/${empId}`);
+export const getEmployee = (empId) => api.get(`/get/${empId}`);
 export const createEmployee = (payload) => api.post('/create', payload);
-export const updateEmployee = (empId, payload) => api.put(`/${empId}`,payload);
-export const deleteEmployee = (empId) => api.delete(`/${empId}`);
+export const updateEmployee = (empId, payload) => api.put(`/update/${empId}`,payload);
+export const deleteEmployee = (empId) => api.delete(`/delete/${empId}`);
 
 const apis = {
     getAllEmployee,
